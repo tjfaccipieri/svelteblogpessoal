@@ -1,0 +1,13 @@
+<div class="bg-gradient-to-tl from-slate-400 to-slate-500 w-full h-screen flex items-center justify-center">
+  <form class="bg-gray-50 p-4 rounded-lg shadow shadow-gray-300 space-y-3 w-[95dvw] md:w-1/4">
+    <h1 class="font-bold text-gray-800 text-3xl">Cadastro</h1>
+    <hr class="border-2 border-gray-300" />
+    <input type="text" class="border rounded p-2 w-full font-semibold" placeholder="Nome completo">
+    <input type="text" class="border rounded p-2 w-full font-semibold" placeholder="E-mail">
+    <input type="password" class="border rounded p-2 w-full font-semibold" placeholder="Senha">
+    <input type="password" class="border rounded p-2 w-full font-semibold" placeholder="Confirmar senha">
+    <button class="w-1/2 bg-gray-800 text-gray-50 font-bold mx-auto block py-2 rounded-xl">Cadastrar</button>
+    <hr>
+    <p class="text-center font-semibold text-sm text-gray-400">Já tem uma conta? <a href="/login" class="underline text-gray-800">Acesse agora</a></p>
+  </form>
+</div>
