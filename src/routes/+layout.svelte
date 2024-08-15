@@ -1,0 +1,5 @@
+navbar
+
+<slot />
+
+footer
