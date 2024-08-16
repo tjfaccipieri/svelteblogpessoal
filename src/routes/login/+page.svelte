@@ -1,30 +1,42 @@
 <script lang='ts'>
-  import axios from 'axios';
+	import axios from 'axios';
+	import {authStore}  from '../authStore';
+  import {redirect} from '@sveltejs/kit'
+  import { goto } from '$app/navigation';
 
-  async function handleLogin(event: Event) {
-    if(event.target instanceof HTMLFormElement) {
-       // Constrói o objeto FormData
-      const formData = new FormData(event.target);
+  async function login(event: Event) {
 
-      // Converte o FormData para um objeto JSON, se necessário
-      const jsonData = Object.fromEntries(formData.entries());
+if(event.target instanceof HTMLFormElement) {
+   // Constrói o objeto FormData
+  const formData = new FormData(event.target);
 
-      // URL da API para enviar os dados
-      const url = 'http://localhost:8080/usuarios/logar';
+  // Converte o FormData para um objeto JSON, se necessário
+  const jsonData = Object.fromEntries(formData.entries());
 
-      try {
-        const resp = await axios.post(url, jsonData)
-        console.log(resp.data);
-      } catch (error) {
-        console.log(error);
-      }
-    }
+try {
+    const resp = await axios.post('http://localhost:8080/usuarios/logar', jsonData)
+    console.log(resp.data);
+    const response = resp.data
     
+    authStore.update((state) => ({
+      ...state,
+      currentUser: response,
+      loading: false,
+    }));
+
+    console.log($authStore);
+
+    goto('/')
+  } catch (error) {
+    console.log(error);
   }
+}
+}
+
 </script>
 
 <div class="bg-gradient-to-tl from-slate-400 to-slate-500 w-full h-screen flex items-center justify-center">
-  <form on:submit|preventDefault={handleLogin} class="bg-gray-50 p-4 rounded-lg shadow shadow-gray-300 space-y-3 w-[95dvw] md:w-1/4">
+  <form on:submit|preventDefault={login} class="bg-gray-50 p-4 rounded-lg shadow shadow-gray-300 space-y-3 w-[95dvw] md:w-1/4">
     <h1 class="font-bold text-gray-800 text-3xl">Login</h1>
     <hr class="border-2 border-gray-300" />
     <input name="usuario" type="text" class="border rounded p-2 w-full font-semibold" placeholder="E-mail">
