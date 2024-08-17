@@ -1,21 +1,28 @@
-<script>
-  import {authStore} from './authStore'
-import axios from 'axios'
+<script lang="ts">
+	import { getWithToken } from '$lib/utils/apiService';
+  import {authStore} from '$lib/utils/authStore'
+  import {onMount} from 'svelte'
+  import { goto } from '$app/navigation';
 
 let temas = []
 
-  async function getTemas() {
-    const resp = await axios.get('http://localhost:8080/temas', {
+onMount(async () => {
+  if($authStore.currentUser !== null) {
+      temas = await getWithToken('/temas', {
       headers: {
         Authorization: $authStore.currentUser.token
-      }
+      } 
     })
-    temas = resp.data
-  }
+    
+    console.log(temas);
+}else {
+        goto('/login')
+      }
+})
+  
 </script>
 
-<button class="bg-indigo-800 p-2 rounded text-white" on:click={getTemas}>listar temas</button>
-
+oi
 {#each temas as tema}
-  <p>{tema.descricao}</p>
+  <p>{tema.id} - {tema.descricao}</p>
 {/each}

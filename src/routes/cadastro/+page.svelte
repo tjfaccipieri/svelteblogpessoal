@@ -1,11 +1,28 @@
 <script lang="ts">
+  import { goto } from '$app/navigation';
+  import axios from 'axios';
+
   async function handleRegister(event: Event){
-    const formData = new FormData(event.target);
+    if(event.target instanceof HTMLFormElement) {
+      const formData = new FormData(event.target);
 
       // Converte o FormData para um objeto JSON, se necessário
       const jsonData = Object.fromEntries(formData.entries());
 
-      console.log(jsonData);
+      
+      try {
+        const request = await axios.post('http://localhost:8080/usuarios/cadastrar', jsonData)
+        const response = request.data
+        console.log(response);
+        if(response.id !== null) {
+          goto('/login')
+        }
+      } catch (error) {
+        console.log(error);
+        alert('falha ao cadastrar')
+      }
+    }
+    
   }
 </script>
 

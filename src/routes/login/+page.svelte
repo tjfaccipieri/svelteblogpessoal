@@ -1,7 +1,6 @@
 <script lang='ts'>
 	import axios from 'axios';
-	import {authStore}  from '../authStore';
-  import {redirect} from '@sveltejs/kit'
+	import {authStore}  from '../../lib/utils/authStore';
   import { goto } from '$app/navigation';
 
   async function login(event: Event) {
