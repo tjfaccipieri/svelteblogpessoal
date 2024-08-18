@@ -6,7 +6,7 @@ import Navbar from '$lib/Navbar.svelte';
 
 <Navbar />
 
-<div class="bg-red-300 min-h-[90dvh]">
+<div class="min-h-[90dvh]">
   <slot />
 </div>
 
