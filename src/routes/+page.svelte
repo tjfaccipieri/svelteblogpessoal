@@ -4,8 +4,9 @@
   import {onMount} from 'svelte'
   import { goto } from '$app/navigation';
 	import ThemeCard from '$lib/ThemeCard.svelte';
+	import type { Tema } from '$lib/models/Tema';
 
-let temas = []
+let temas: Tema[] = []
 
 onMount(async () => {
   if($authStore.currentUser !== null) {
@@ -22,7 +23,6 @@ onMount(async () => {
   
 </script>
 
-oi
 <div class="grid grid-cols-3 container mx-auto gap-4">
   {#each temas as tema}
     <ThemeCard tema={tema} />
