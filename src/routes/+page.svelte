@@ -3,7 +3,7 @@
   import {authStore} from '$lib/utils/authStore'
   import {onMount} from 'svelte'
   import { goto } from '$app/navigation';
-	import ThemeCard from '$lib/ThemeCard.svelte';
+	import ThemeCard from '$lib/temas/ThemeCard.svelte';
 	import type { Tema } from '$lib/models/Tema';
 
 let temas: Tema[] = []
