@@ -1,5 +1,14 @@
 <script lang="ts">
   import { writable } from 'svelte/store';
+  import {authStore} from '$lib/utils/authStore'
+
+  let user = $authStore.currentUser
+
+  let imageUrl = user?.foto || 'https://i.imgur.com/XEmGzkd.png';
+
+  function handleImageError() {
+    imageUrl = 'https://i.imgur.com/XEmGzkd.png'; // URL da imagem de fallback
+  }
 
   // Cria uma store reativa para o estado
   export const isOpen = writable(false);
@@ -30,10 +39,10 @@
       class="absolute right-0 z-20 w-56 py-2 mt-2 overflow-hidden origin-top-right bg-white rounded-md shadow-xl dark:bg-gray-800"
     >
       <a href="/" class="flex items-center p-3 -mt-2 text-sm text-gray-600 transition-colors duration-300 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white">
-        <img class="flex-shrink-0 object-cover mx-1 rounded-full w-9 h-9" src="https://images.unsplash.com/photo-1523779917675-b6ed3a42a561?ixid=MnwxMjA3fDB8MHxzZWFyY2h8N3x8d29tYW4lMjBibHVlfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=face&w=500&q=200" alt="jane avatar">
+        <img alt="Profile" class="flex-shrink-0 object-cover mx-1 rounded-full w-9 h-9" src={imageUrl} on:error={handleImageError}>
         <div class="mx-1">
-          <h1 class="text-sm font-semibold text-gray-700 dark:text-gray-200">Jane Doe</h1>
-          <p class="text-sm text-gray-500 dark:text-gray-400">janedoe@example.com</p>
+          <h1 class="text-sm font-semibold text-gray-700 dark:text-gray-200">{user?.nome}</h1>
+          <p class="text-sm text-gray-500 dark:text-gray-400">{user?.usuario}</p>
         </div>
       </a>
 
