@@ -5,32 +5,32 @@
 
   async function login(event: Event) {
 
-if(event.target instanceof HTMLFormElement) {
-   // Constrói o objeto FormData
-  const formData = new FormData(event.target);
+    if(event.target instanceof HTMLFormElement) {
+      // Constrói o objeto FormData
+      const formData = new FormData(event.target);
 
-  // Converte o FormData para um objeto JSON, se necessário
-  const jsonData = Object.fromEntries(formData.entries());
+      // Converte o FormData para um objeto JSON, se necessário
+      const jsonData = Object.fromEntries(formData.entries());
 
-try {
-    const resp = await axios.post('http://localhost:8080/usuarios/logar', jsonData)
-    console.log(resp.data);
-    const response = resp.data
-    
-    authStore.update((state) => ({
-      ...state,
-      currentUser: response,
-      loading: false,
-    }));
+      try {
+        const resp = await axios.post('http://localhost:8080/usuarios/logar', jsonData)
+        console.log(resp.data);
+        const response = resp.data
+        
+        authStore.update((state) => ({
+          ...state,
+          currentUser: response,
+          loading: false,
+        }));
 
-    console.log($authStore);
+        console.log($authStore);
 
-    goto('/')
-  } catch (error) {
-    console.log(error);
+        goto('/home')
+      } catch (error) {
+        console.log(error);
+      }
+    }
   }
-}
-}
 
 </script>
 
