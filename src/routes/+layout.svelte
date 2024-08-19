@@ -1,7 +1,8 @@
 <script>
 	import Footer from '$lib/Footer.svelte';
-import Navbar from '$lib/Navbar.svelte';
+  import Navbar from '$lib/Navbar.svelte';
   import '../app.css'
+  import { Modals, closeModal } from 'svelte-modals'
 </script>
 
 <Navbar />
@@ -11,3 +12,11 @@ import Navbar from '$lib/Navbar.svelte';
 </div>
 
 <Footer />
+
+<Modals>
+  <div
+    slot="backdrop"
+    class="backdrop"
+    on:click={closeModal}
+  />
+</Modals>
