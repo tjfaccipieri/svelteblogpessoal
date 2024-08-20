@@ -30,7 +30,7 @@
       inversePosts = postagens.sort((a,b) => b.id - a.id)
       console.log(inversePosts);
     } else {
-      // goto('/login')
+      goto('/login')
     }
   })
   
@@ -48,7 +48,7 @@
   </div>
 </div>
 <div class="bg-slate-100 py-6">
-  <div class="container mx-auto space-y-4">
+  <div class="container mx-auto  grid grid-cols-3 gap-4">
     {#each inversePosts as post}
       <PostCard post={post} />
     {/each}
