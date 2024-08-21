@@ -6,11 +6,11 @@
 	import { authStore } from '$lib/utils/authStore';
 	import { onMount } from 'svelte';
 
-	import Modal from '$lib/Modal.svelte';
+	import PostModal from '$lib/postagens/PostModal.svelte';
 	import { openModal } from 'svelte-modals';
 
 	function handleClick() {
-		openModal(Modal, { title: 'Nova postagem' });
+		openModal(PostModal, { title: 'Nova postagem' });
 	}
 
 	let postagens: Postagem[] = [];

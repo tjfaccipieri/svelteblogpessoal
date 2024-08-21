@@ -3,6 +3,7 @@
 	import { getWithToken, postWithToken } from '$lib/utils/apiService';
 	import { authStore } from '$lib/utils/authStore';
 	import { onMount } from 'svelte';
+  import { closeModal } from 'svelte-modals'
 
   let titulo = '';
   let texto = '';
@@ -29,6 +30,7 @@ async function handleNewPost(event: Event){
           }
         })
         console.log(request);
+        closeModal()
       } catch (error) {
         console.log(error);
         alert('falha ao cadastrar')
